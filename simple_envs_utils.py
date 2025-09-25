@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import time
 
 '''
@@ -43,3 +44,22 @@ def aprox_optimal_policy_visualization(env, q_table):
         time.sleep(0.5)
 
     env.show()
+
+
+'''
+funcion que plottea promedio de retornos, para la pregunta c.
+'''
+def plot_mean_returns(mean_return_q_learning, mean_return_sarsa, mean_return_4_step_sarsa):
+    plt.figure(figsize=(14, 10))
+    plt.plot(mean_return_q_learning, label="Q-learning")
+    plt.plot(mean_return_sarsa, label="SARSA (N-step SARSA con n=1)")
+    plt.plot(mean_return_4_step_sarsa, label="4-Step SARSA (N-step SARSA con n=4)")
+    plt.xlabel("Episodios")
+    plt.ylabel("Retorno Promedio")
+    plt.title("Q-learning vs SARSA vs 4-step SARSA en CliffEnv")
+    plt.ylim(bottom=-200)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout
+    # plt.savefig('figuras/pregunta_c.jpeg', dpi=500)
+    plt.show()
