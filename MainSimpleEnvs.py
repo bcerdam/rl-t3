@@ -2,7 +2,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 from Environments.SimpleEnvs.CliffEnv import CliffEnv
 from Environments.SimpleEnvs.EscapeRoomEnv import EscapeRoomEnv
-from q_learning_pipeline import q_learning, aprox_optimal_policy_visualization
+from q_learning_pipeline import q_learning
+from simple_envs_utils import aprox_optimal_policy_visualization
 
 def show(env, current_state, reward=None):
     env.show()
