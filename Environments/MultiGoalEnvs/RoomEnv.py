@@ -37,6 +37,8 @@ class RoomEnv(GridEnv):
             self.__agents_location = new_location
         done = self.__agents_location == self.__current_goal
         reward = 1.0 if done else 0.0
+        # reward = 1.0 if done else -0.01 # Con este cambio la visualizacion funcionaba.
+        # Pero en el enunciado especifican que R = 0 si no esta en el objetivo, asique no lo utilizo.
         return self.__get_state(), reward, done
 
     def _get_location_letter(self, location):

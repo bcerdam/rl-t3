@@ -4,9 +4,10 @@ from simple_envs_utils import q_table_init, e_greedy_policy
 '''
 Algoritmo q-learning, basado en pseudo codigo de Sutton y Barto
 '''
-def q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode):
-    q_table = q_table_init(env)
+def q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, init_q_value=0):
+    q_table = q_table_init(env, init_q_value)
     episode_rewards = []
+    episode_lengths = []
     possible_actions = env.action_space
 
     for episode in range(num_episodes):
@@ -31,6 +32,7 @@ def q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode):
                 break
 
         episode_rewards.append(episode_reward)
+        episode_lengths.append(step+1)
 
-    return q_table, episode_rewards
+    return q_table, episode_rewards, episode_lengths
 

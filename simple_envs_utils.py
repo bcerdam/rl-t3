@@ -5,21 +5,33 @@ import time
 '''
 inicializa tabla Q(s, a) = 0 para todos los estados y toas las acciones
 '''
-def q_table_init(env):
+def q_table_init(env, init_q_val=0):
     q_table = {}
     possible_actions = env.action_space
 
-    if "EscapeRoomEnv" in str(type(env)):
+    if "RoomEnv" in str(type(env)):
+        all_positions = []
+        for r in range(env._height):
+            for c in range(env._width):
+                all_positions.append((r, c))
+
+        all_goals = env.goals
+        for agent_pos in all_positions:
+            for goal_pos in all_goals:
+                state = (agent_pos, goal_pos)
+                q_table[state] = {action: init_q_val for action in possible_actions}
+
+    elif "EscapeRoomEnv" in str(type(env)):
         for row in range(env._height):
             for col in range(env._width):
                 for has_key in [True, False]:
                     state = (row, col, has_key)
-                    q_table[state] = {action: 0 for action in possible_actions}
+                    q_table[state] = {action: init_q_val for action in possible_actions}
     else:
         for row in range(env._height):
             for col in range(env._width):
                 state = (row, col)
-                q_table[state] = {action: 0 for action in possible_actions}
+                q_table[state] = {action: init_q_val for action in possible_actions}
     return q_table
 
 

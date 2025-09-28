@@ -5,9 +5,10 @@ from simple_envs_utils import q_table_init, e_greedy_policy
 '''
 Algoritmo n-step sarsa, basado en pseudo codigo de Sutton y Barto
 '''
-def n_step_sarsa(env, n, num_episodes, alpha, gamma, epsilon, max_steps_per_episode):
+def n_step_sarsa(env, n, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, init_q_val=0):
     q_table = q_table_init(env)
     episode_rewards = []
+    episode_lengths = []
     possible_actions = env.action_space
 
     for episode in range(num_episodes):
@@ -46,4 +47,5 @@ def n_step_sarsa(env, n, num_episodes, alpha, gamma, epsilon, max_steps_per_epis
                 finishing_episode = False
 
         episode_rewards.append(episode_reward)
-    return q_table, episode_rewards
+        episode_lengths.append(t)
+    return q_table, episode_rewards, episode_lengths
