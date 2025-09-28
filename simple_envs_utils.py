@@ -71,3 +71,71 @@ def plot_mean_returns(mean_return_q_learning, mean_return_sarsa, mean_return_4_s
     plt.tight_layout
     # plt.savefig('figuras/pregunta_c.jpeg', dpi=500)
     plt.show()
+
+
+'''
+implementacion value_iteration basado en pseudo coddigo de libro Sutton y Barto, tiene modificaciones para que funcione con pseudo codigo de Rmax
+visto en la capsula que subio el profe.
+'''
+def value_iteration(env, gamma, theta, Rmax, k, N_t, N_p, S):
+    V = {s: 0 for s in S}
+    possible_actions = env.action_space
+    not_converged = True
+
+    while not_converged == True:
+        delta = 0
+        for s in S:
+            v = V[s]
+            action_values = []
+
+            for action in possible_actions:
+                if (s, action) not in N_t or N_t[(s, action)] < k:
+                    v_terminal = 0
+                    current_action_value = Rmax + gamma * v_terminal
+                    action_values.append(current_action_value)
+                else:
+                    current_action_value = 0
+                    if (s, action) in N_p:
+                        total_transitions = N_t[(s, action)]
+
+                        for transition in list(N_p[(s, action)].keys()):
+                            s_p = transition[0]
+                            r = transition[1]
+                            amount = N_p[(s, action)][transition]
+                            current_action_value += (amount / total_transitions) * (r + gamma * V[s_p])
+                    action_values.append(current_action_value)
+
+            max_v = 0
+            if action_values != []:
+                max_v = np.max(np.array(action_values))
+            V[s] = max_v
+            delta = max(delta, abs(v - V[s]))
+        if delta < theta:
+            not_converged = False
+    return V
+
+
+'''
+Funcion que obtiene A de S usando politica greedy a partir de V, necesaria para parte de pseudo codigo de Rmax.
+'''
+def action_from_v(env, V, s, gamma, Rmax, k, N_t, N_p):
+    possible_actions = env.action_space
+    action_values = []
+
+    for action in possible_actions:
+        if (s, action) not in N_t or N_t[(s, action)] < k:
+            v_terminal = 0
+            current_action_value = Rmax + gamma * v_terminal
+            action_values.append(current_action_value)
+        else:
+            current_action_value = 0
+            if (s, action) in N_p:
+                total_transitions = N_t[(s, action)]
+                for transition in list(N_p[(s, action)].keys()):
+                    s_p = transition[0]
+                    r = transition[1]
+                    amount = N_p[(s, action)][transition]
+                    current_action_value += (amount / total_transitions) * (r + gamma * V[s_p])
+            action_values.append(current_action_value)
+
+    return possible_actions[np.argmax(action_values)]

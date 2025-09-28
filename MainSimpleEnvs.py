@@ -7,6 +7,7 @@ from Environments.SimpleEnvs.EscapeRoomEnv import EscapeRoomEnv
 from q_learning_pipeline import q_learning
 from n_step_sarsa_pipeline import n_step_sarsa
 from dyna_pipeline import tabular_dyna_q
+from rmax_pipeline import rmax
 from simple_envs_utils import aprox_optimal_policy_visualization, plot_mean_returns
 
 def show(env, current_state, reward=None):
@@ -129,6 +130,24 @@ if __name__ == "__main__":
     #
     # # Permite visualizar como agente resuelve el problema con la politica encontrada, descomentar para poder observar.
     # # aprox_optimal_policy_visualization(env, q_table_dyna)
+
+    # env = EscapeRoomEnv()
+    # GAMMA = 1.0
+    # N_EPISODES = 20
+    # MAX_STEPS_PER_EPISODE = 1000
+    # N_RUNS = 5
+    # K = 2
+    # R_MAX = 10
+    # THETA = 0.00001
+    #
+    # rewards = np.zeros((N_RUNS, N_EPISODES))
+    # for run in range(N_RUNS):
+    #     print(f"Rmax ejecucion: {run + 1}/{N_RUNS}")
+    #     reward_by_episode = rmax(env, K, R_MAX, N_EPISODES, GAMMA, MAX_STEPS_PER_EPISODE, THETA)
+    #     rewards[run, :] = reward_by_episode
+    #
+    # mean_return_per_episode = np.mean(rewards, axis=0)
+    # print(mean_return_per_episode)
 
     '''
         Fin pregunta d
