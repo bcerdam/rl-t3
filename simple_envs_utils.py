@@ -85,6 +85,23 @@ def plot_mean_returns(mean_return_q_learning, mean_return_sarsa, mean_return_4_s
     plt.show()
 
 
+def plot_multiple_mean_lengths(results_dict):
+    plt.figure(figsize=(14, 10))
+    for label, data in results_dict.items():
+        plt.plot(data, label=label)
+    plt.xlabel("Episodios")
+    plt.ylabel("Largo Promedio del Episodio")
+    plt.title("Comparación de Algoritmos en RoomEnv")
+    plt.ylim(bottom=0)
+    plt.legend()
+    plt.grid(True)
+    plt.tight_layout()
+    plt.savefig('figuras/pregunta_e.jpeg', dpi=500)
+    plt.show()
+
+
+
+
 '''
 implementacion value_iteration basado en pseudo coddigo de libro Sutton y Barto, tiene modificaciones para que funcione con pseudo codigo de Rmax
 visto en la capsula que subio el profe.
