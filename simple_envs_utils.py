@@ -41,9 +41,15 @@ Elige accion de manera epsilon greedy
 def e_greedy_policy(q_table, state, possible_actions, epsilon):
     random_decimal = np.random.random()
     if random_decimal < epsilon:
-        return np.random.choice(possible_actions)
+        return possible_actions[np.random.randint(len(possible_actions))]
     else:
-        return possible_actions[np.argmax([q_table[state][action] for action in possible_actions])]
+        if state not in q_table.keys():
+            return possible_actions[np.random.randint(len(possible_actions))]
+
+        q_values = []
+        for action in possible_actions:
+            q_values.append(q_table[state][action])
+        return possible_actions[np.argmax(q_values)]
 
 
 '''
@@ -91,12 +97,12 @@ def plot_multiple_mean_lengths(results_dict):
         plt.plot(data, label=label)
     plt.xlabel("Episodios")
     plt.ylabel("Largo Promedio del Episodio")
-    plt.title("Comparación de Algoritmos en RoomEnv")
+    plt.title("Comparación Centralized, Decentralized Cooperative y Decentralized Competitive Q-learning.")
     plt.ylim(bottom=0)
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig('figuras/pregunta_e.jpeg', dpi=500)
+    # plt.savefig('figuras/pregunta_f.jpeg', dpi=500)
     plt.show()
 
 

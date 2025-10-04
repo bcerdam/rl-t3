@@ -86,18 +86,18 @@ if __name__ == '__main__':
     # multi_goal_8_step_sarsa_mean_episode_lengths = np.mean(all_episode_lengths_multi_goal_8_step_sarsa, axis=0)
     # ### MULTI-GOAL 8-STEP SARSA ###
 
-    # ### RESULTADOS ###
-    final_results = {
-        "Q-learning": mean_lengths_q,
-        "Sarsa": sarsa_mean_episode_lengths,
-        "8-Step Sarsa": sarsa_8_step_mean_episode_lengths,
-        "Multi-Goal Q-learning": mean_lengths_multi_goal_q,
-        "Multi-Goal Sarsa": multi_goal_1_step_sarsa_mean_episode_lengths,
-        "Multi-Goal 8-Step Sarsa": multi_goal_8_step_sarsa_mean_episode_lengths
-    }
-    plot_multiple_mean_lengths(q_learning_mean_episode_lengths, sarsa_mean_episode_lengths, sarsa_8_step_mean_episode_lengths)
-
-    # ### RESULTADOS ###
+    # # ### RESULTADOS ###
+    # final_results = {
+    #     "Q-learning": mean_lengths_q,
+    #     "Sarsa": sarsa_mean_episode_lengths,
+    #     "8-Step Sarsa": sarsa_8_step_mean_episode_lengths,
+    #     "Multi-Goal Q-learning": mean_lengths_multi_goal_q,
+    #     "Multi-Goal Sarsa": multi_goal_1_step_sarsa_mean_episode_lengths,
+    #     "Multi-Goal 8-Step Sarsa": multi_goal_8_step_sarsa_mean_episode_lengths
+    # }
+    # plot_multiple_mean_lengths(final_results)
+    #
+    # # ### RESULTADOS ###
     '''
     Fin pregunta e)
     '''
