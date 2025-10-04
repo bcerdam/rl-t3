@@ -102,7 +102,7 @@ def plot_multiple_mean_lengths(results_dict):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    # plt.savefig('figuras/pregunta_f.jpeg', dpi=500)
+    plt.savefig('figuras/pregunta_g_4.jpeg', dpi=500)
     plt.show()
 
 

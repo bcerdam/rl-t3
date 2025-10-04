@@ -5,7 +5,7 @@ from collections import defaultdict
 '''
 Algoritmo q-learning, basado en pseudo codigo de Sutton y Barto
 '''
-def q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, init_q_value=0):
+def q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, init_q_value=0, memory=False):
     q_table = q_table_init(env, init_q_value)
     episode_rewards = []
     episode_lengths = []
@@ -35,7 +35,10 @@ def q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, 
         episode_rewards.append(episode_reward)
         episode_lengths.append(step+1)
 
-    return q_table, episode_rewards, episode_lengths
+    if memory == True:
+        return episode_lengths
+    else:
+        return q_table, episode_rewards, episode_lengths
 
 
 '''
@@ -79,7 +82,7 @@ Algoritmo q-learning, basado en pseudo codigo de Sutton y Barto. Es casi igual q
 para este tipo de problemas, tuve que modificar la inicialiacion de la q_table, y solamente hacerlo para
 estados que se han visitado.
 '''
-def memory_efficient_q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, init_q_value):
+def memory_efficient_q_learning(env, num_episodes, alpha, gamma, epsilon, max_steps_per_episode, init_q_value, memory=False):
     q_table = defaultdict(lambda: defaultdict(lambda: init_q_value))
     episode_lengths = []
     possible_actions = env.action_space
@@ -102,7 +105,11 @@ def memory_efficient_q_learning(env, num_episodes, alpha, gamma, epsilon, max_st
             if s_terminal == True:
                 break
         episode_lengths.append(step + 1)
-    return q_table, episode_lengths
+
+    if memory == True:
+        return episode_lengths
+    else:
+        return q_table, episode_lengths
 
 
 '''
