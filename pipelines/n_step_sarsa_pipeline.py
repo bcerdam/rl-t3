@@ -1,6 +1,5 @@
-import numpy as np
 from collections import defaultdict
-from simple_envs_utils import q_table_init, e_greedy_policy
+from .simple_envs_utils import q_table_init, e_greedy_policy
 
 
 '''

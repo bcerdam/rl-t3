@@ -1,7 +1,7 @@
 import numpy as np
-from q_learning_pipeline import q_learning, multi_goal_q_learning
-from n_step_sarsa_pipeline import n_step_sarsa, multi_goal_n_step_sarsa
-from simple_envs_utils import aprox_optimal_policy_visualization, plot_mean_returns, plot_multiple_mean_lengths
+from pipelines.q_learning_pipeline import q_learning, multi_goal_q_learning
+from pipelines.n_step_sarsa_pipeline import n_step_sarsa, multi_goal_n_step_sarsa
+from pipelines.simple_envs_utils import plot_multiple_mean_lengths
 from Environments.MultiGoalEnvs.RoomEnv import RoomEnv
 from MainSimpleEnvs import play_simple_env
 
@@ -19,15 +19,15 @@ if __name__ == '__main__':
     Inicio pregunta e)
     '''
 
-    env = RoomEnv()
-
-    ALPHA = 0.1
-    EPSILON = 0.1
-    GAMMA = 0.99
-    N_EPISODES = 500
-    N_RUNS = 100
-    INITIAL_Q_VALUE = 1.0
-    MAX_STEPS_PER_EPISODE = 10 ** 3
+    # env = RoomEnv()
+    #
+    # ALPHA = 0.1
+    # EPSILON = 0.1
+    # GAMMA = 0.99
+    # N_EPISODES = 500
+    # N_RUNS = 100
+    # INITIAL_Q_VALUE = 1.0
+    # MAX_STEPS_PER_EPISODE = 10 ** 3
 
 
     # ### Q-LEARNING ###
@@ -65,7 +65,7 @@ if __name__ == '__main__':
     #     all_episode_lengths_multi_goal_q_learning[run, :] = multi_goal_q_episode_lengths
     # mean_lengths_multi_goal_q = np.mean(all_episode_lengths_multi_goal_q_learning, axis=0)
     # ### MULTI-GOAL Q-LEARNING ###
-
+    #
     # ### MULTI-GOAL 1-STEP SARSA ###
     # all_episode_lengths_multi_goal_1_step_sarsa = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):
@@ -85,10 +85,10 @@ if __name__ == '__main__':
     #     all_episode_lengths_multi_goal_8_step_sarsa[run, :] = multi_goal_8_step_sarsa_episode_lengths
     # multi_goal_8_step_sarsa_mean_episode_lengths = np.mean(all_episode_lengths_multi_goal_8_step_sarsa, axis=0)
     # ### MULTI-GOAL 8-STEP SARSA ###
-
+    #
     # # ### RESULTADOS ###
     # final_results = {
-    #     "Q-learning": mean_lengths_q,
+    #     "Q-learning": q_learning_mean_episode_lengths,
     #     "Sarsa": sarsa_mean_episode_lengths,
     #     "8-Step Sarsa": sarsa_8_step_mean_episode_lengths,
     #     "Multi-Goal Q-learning": mean_lengths_multi_goal_q,

@@ -3,10 +3,8 @@ from Environments.MultiAgentEnvs.HunterAndPreyEnv import HunterAndPreyEnv
 from Environments.MultiAgentEnvs.CentralizedHunterEnv import CentralizedHunterEnv
 from Environments.MultiAgentEnvs.HunterEnv import HunterEnv
 from MainSimpleEnvs import show, get_action_from_user
-from q_learning_pipeline import memory_efficient_q_learning, decentralized_q_learning, decentralized_competitive_q_learning
-from simple_envs_utils import plot_multiple_mean_lengths
-from simple_envs_utils import aprox_optimal_policy_visualization
-
+from pipelines.q_learning_pipeline import memory_efficient_q_learning, decentralized_q_learning, decentralized_competitive_q_learning
+from pipelines.simple_envs_utils import plot_multiple_mean_lengths
 
 def play_hunter_env():
     hunter_env = HunterAndPreyEnv()
@@ -36,16 +34,16 @@ if __name__ == '__main__':
     Inicio pregunta f)
     '''
 
-    env = CentralizedHunterEnv()
-
-    ALPHA = 0.1
-    GAMMA = 0.95
-    EPSILON = 0.1
-    INITIAL_Q_VALUE = 1.0
-    N_EPISODES = 50000
-    N_RUNS = 30
-    MAX_STEPS_PER_EPISODE = 3*(10**2)
-
+    # env = CentralizedHunterEnv()
+    #
+    # ALPHA = 0.1
+    # GAMMA = 0.95
+    # EPSILON = 0.1
+    # INITIAL_Q_VALUE = 1.0
+    # N_EPISODES = 50000
+    # N_RUNS = 30
+    # MAX_STEPS_PER_EPISODE = 3*(10**2)
+    #
     # ### CENTRALIZED Q-LEARNING ###
     # all_episode_lengths = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):

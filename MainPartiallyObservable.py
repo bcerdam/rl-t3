@@ -1,7 +1,7 @@
 import numpy as np
-from simple_envs_utils import plot_multiple_mean_lengths
-from q_learning_pipeline import q_learning, memory_efficient_q_learning
-from n_step_sarsa_pipeline import n_step_sarsa, memory_efficient_n_step_sarsa
+from pipelines.simple_envs_utils import plot_multiple_mean_lengths
+from pipelines.q_learning_pipeline import q_learning, memory_efficient_q_learning
+from pipelines.n_step_sarsa_pipeline import n_step_sarsa, memory_efficient_n_step_sarsa
 
 from Environments.PartiallyObservableEnvs.InvisibleDoorEnv import InvisibleDoorEnv
 from MainSimpleEnvs import show, get_action_from_user, play_simple_env
@@ -57,7 +57,7 @@ if __name__ == '__main__':
     # N_EPISODES = 1000
     # N_RUNS = 30
     # MAX_STEPS_PER_EPISODE = 5*(10**3)
-
+    #
     # ### Q-LEARNING ###
     # all_lengths_q = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):
@@ -93,10 +93,10 @@ if __name__ == '__main__':
     # }
     # plot_multiple_mean_lengths(final_results)
     # ### Resultados Primera Parte ###
-
+    #
     # MEMORY_SIZE = 2
     # env = KOrderMemory(InvisibleDoorEnv(), memory_size=MEMORY_SIZE)
-
+    #
     # ### Q-LEARNING K=2 ORDER MEMORY ###
     # all_lengths_q_learning_size_2_memory = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):
@@ -132,7 +132,7 @@ if __name__ == '__main__':
     # }
     # plot_multiple_mean_lengths(final_results)
     # ### Resultados Segunda Parte ###
-
+    #
     # NUM_OF_BITS = 1
     # env = BinaryMemory(InvisibleDoorEnv(), num_of_bits=NUM_OF_BITS)
     #
@@ -171,7 +171,7 @@ if __name__ == '__main__':
     # }
     # plot_multiple_mean_lengths(final_results)
     # ### Resultados Tercera Parte ###
-
+    #
     # BUFFER_SIZE = 1
     # env = KOrderMemoryBufferVariant(InvisibleDoorEnv(), k_order_buffer=BUFFER_SIZE)
     #

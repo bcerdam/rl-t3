@@ -1,5 +1,4 @@
-import numpy as np
-from simple_envs_utils import q_table_init, value_iteration, action_from_v
+from .simple_envs_utils import q_table_init, value_iteration, action_from_v
 
 '''
 Algoritmo Rmax, basado en pseudo codigo de capsula subida por el profe.

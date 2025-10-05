@@ -1,14 +1,12 @@
 import numpy as np
-import matplotlib.pyplot as plt
-
 from Environments.SimpleEnvs.CliffEnv import CliffEnv
 from Environments.SimpleEnvs.EscapeRoomEnv import EscapeRoomEnv
+from pipelines.q_learning_pipeline import q_learning
+from pipelines.n_step_sarsa_pipeline import n_step_sarsa
+from pipelines.simple_envs_utils import aprox_optimal_policy_visualization, plot_mean_returns
+from pipelines.dyna_pipeline import tabular_dyna_q
+from pipelines.rmax_pipeline import rmax
 
-from q_learning_pipeline import q_learning
-from n_step_sarsa_pipeline import n_step_sarsa
-from dyna_pipeline import tabular_dyna_q
-from rmax_pipeline import rmax
-from simple_envs_utils import aprox_optimal_policy_visualization, plot_mean_returns
 
 def show(env, current_state, reward=None):
     env.show()
@@ -43,7 +41,7 @@ if __name__ == "__main__":
         Inicio pregunta c
     '''
     # env = CliffEnv()
-
+    #
     # ALPHA = 0.1
     # GAMMA = 1.0
     # EPSILON = 0.1
@@ -55,7 +53,7 @@ if __name__ == "__main__":
     # run_episode_rewards = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):
     #     print(f"Q-learning run {run + 1}/{N_RUNS}")
-    #     q_table, episode_rewards = q_learning(env, N_EPISODES, ALPHA, GAMMA, EPSILON, MAX_STEPS_PER_EPISODE)
+    #     q_table, episode_rewards, episode_lengths = q_learning(env, N_EPISODES, ALPHA, GAMMA, EPSILON, MAX_STEPS_PER_EPISODE)
     #     run_episode_rewards[run, :] = episode_rewards
     # mean_return_q_learning = np.mean(run_episode_rewards, axis=0)
     # ### Q-LEARNING ###
@@ -64,7 +62,7 @@ if __name__ == "__main__":
     # run_episode_rewards = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):
     #     print(f"SARSA run {run + 1}/{N_RUNS}")
-    #     q_table_sarsa, rewards_sarsa = n_step_sarsa(env, 1, N_EPISODES, ALPHA, GAMMA, EPSILON, MAX_STEPS_PER_EPISODE)
+    #     q_table_sarsa, rewards_sarsa, episode_lengths = n_step_sarsa(env, 1, N_EPISODES, ALPHA, GAMMA, EPSILON, MAX_STEPS_PER_EPISODE)
     #     run_episode_rewards[run, :] = rewards_sarsa
     # mean_return_sarsa = np.mean(run_episode_rewards, axis=0)
     # ## SARSA ###
@@ -73,7 +71,7 @@ if __name__ == "__main__":
     # run_episode_rewards = np.zeros((N_RUNS, N_EPISODES))
     # for run in range(N_RUNS):
     #     print(f"4-step SARSA run {run + 1}/{N_RUNS}")
-    #     q_table_4_step_sarsa, rewards_4_step_sarsa = n_step_sarsa(env, 4, N_EPISODES, ALPHA, GAMMA, EPSILON, MAX_STEPS_PER_EPISODE)
+    #     q_table_4_step_sarsa, rewards_4_step_sarsa, episode_lengths = n_step_sarsa(env, 4, N_EPISODES, ALPHA, GAMMA, EPSILON, MAX_STEPS_PER_EPISODE)
     #     run_episode_rewards[run, :] = rewards_4_step_sarsa
     # mean_return_4_step_sarsa = np.mean(run_episode_rewards, axis=0)
     # ### N-STEP SARSA ###
@@ -98,8 +96,6 @@ if __name__ == "__main__":
     '''
         Inicio pregunta d
     '''
-
-    # Ejecutar Dyna me tomo 42 min en mi computador.
 
     # env = EscapeRoomEnv()
     # ALPHA = 0.5

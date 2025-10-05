@@ -9,7 +9,13 @@ def q_table_init(env, init_q_val=0):
     q_table = {}
     possible_actions = env.action_space
 
-    if "RoomEnv" in str(type(env)):
+    if "EscapeRoomEnv" in str(type(env)):
+        for row in range(env._height):
+            for col in range(env._width):
+                for has_key in [True, False]:
+                    state = (row, col, has_key)
+                    q_table[state] = {action: init_q_val for action in possible_actions}
+    elif "RoomEnv" in str(type(env)):
         all_positions = []
         for r in range(env._height):
             for c in range(env._width):
@@ -20,13 +26,6 @@ def q_table_init(env, init_q_val=0):
             for goal_pos in all_goals:
                 state = (agent_pos, goal_pos)
                 q_table[state] = {action: init_q_val for action in possible_actions}
-
-    elif "EscapeRoomEnv" in str(type(env)):
-        for row in range(env._height):
-            for col in range(env._width):
-                for has_key in [True, False]:
-                    state = (row, col, has_key)
-                    q_table[state] = {action: init_q_val for action in possible_actions}
     else:
         for row in range(env._height):
             for col in range(env._width):
@@ -102,7 +101,7 @@ def plot_multiple_mean_lengths(results_dict):
     plt.legend()
     plt.grid(True)
     plt.tight_layout()
-    plt.savefig('figuras/pregunta_g_4.jpeg', dpi=500)
+    # plt.savefig('figuras/pregunta_g_4.jpeg', dpi=500)
     plt.show()
 
 
@@ -110,7 +109,7 @@ def plot_multiple_mean_lengths(results_dict):
 
 '''
 implementacion value_iteration basado en pseudo coddigo de libro Sutton y Barto, tiene modificaciones para que funcione con pseudo codigo de Rmax
-visto en la capsula que subio el profe.
+visto en la capsula que subio el profe. (Esto deberia cambiarlo a pipeline de Rmax, no en utils)
 '''
 def value_iteration(env, gamma, theta, Rmax, k, N_t, N_p, S):
     V = {s: 0 for s in S}
@@ -151,7 +150,7 @@ def value_iteration(env, gamma, theta, Rmax, k, N_t, N_p, S):
 
 
 '''
-Funcion que obtiene A de S usando politica greedy a partir de V, necesaria para parte de pseudo codigo de Rmax.
+Funcion que obtiene A de S usando politica greedy a partir de V, necesaria para parte de pseudo codigo de Rmax.(Tambien a pipeline de Rmax)
 '''
 def action_from_v(env, V, s, gamma, Rmax, k, N_t, N_p):
     possible_actions = env.action_space

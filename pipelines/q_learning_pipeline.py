@@ -1,4 +1,4 @@
-from simple_envs_utils import q_table_init, e_greedy_policy
+from .simple_envs_utils import q_table_init, e_greedy_policy
 from collections import defaultdict
 
 

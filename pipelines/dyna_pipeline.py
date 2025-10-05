@@ -1,6 +1,5 @@
-import numpy as np
 import random
-from simple_envs_utils import q_table_init, e_greedy_policy
+from .simple_envs_utils import q_table_init, e_greedy_policy
 
 
 '''
